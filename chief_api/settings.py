@@ -14,7 +14,7 @@ import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-with open(os.path.abspath("../secrets.json")) as f:
+with open(os.path.abspath("./secrets.json")) as f:
     secrets = json.loads(f.read())
 
 
@@ -32,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7*=z=cp9&84siigpzxv4k6v0#4q(k%=%+hmzp$564g9@j@c__d'
+SECRET_KEY = 'y5c8lq$)abtujl2r)qv2wgbj*w=%a-q0a1qcxgefe=v10=_una'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,7 +54,7 @@ PREREQUISITE_APPS = [
 ]
 
 PROJECT_APPS = [
-    'apps.records.apps.RecordsConfig',
+    'records.apps.RecordsConfig',
 ]
 
 INSTALLED_APPS = PREREQUISITE_APPS + PROJECT_APPS
@@ -92,6 +92,9 @@ TEMPLATES = [
     },
 ]
 
+WSGI_APPLICATION = 'chief_api.wsgi.application'
+
+# Social Auth
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
@@ -100,7 +103,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-# Social Auth
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
