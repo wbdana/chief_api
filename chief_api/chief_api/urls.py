@@ -19,7 +19,7 @@ from django.urls import path
 from django.contrib.auth import login, logout
 from django.conf.urls import url, include
 
-from .apps.records import views as records_views
+from apps.records import views as records_views
 
 
 urlpatterns = [
