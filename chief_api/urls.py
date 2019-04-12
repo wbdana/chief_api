@@ -21,8 +21,14 @@ from records import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', include('records.urls')),
+
     path('login/', LoginView, name='login'),
     path('logout/', LogoutView, name='logout'),
-    path('oauth/', include('social_django.urls')),
+
+    path('oauth/', include('social_django.urls', namespace='social')),
+
+    path('settings/', views.settings, name='settings'),
+    path('settings/password/', views.password, name='password'),
 ]
