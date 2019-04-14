@@ -131,13 +131,14 @@ AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.twitter.TwitterOAuth',
     # 'social_core.backends.facebook.FacebookOAuth2',
 
+    'social_core.backends.github.GithubOAuth2',
     'rest_framework_social_oauth2.backends.DjangoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
 # LOGIN_URL = 'login'
 # LOGOUT_URL = 'logout'
-# LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/users/1'
 # SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
 # SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
 # SOCIAL_AUTH_RAISE_EXCEPTIONS = False
