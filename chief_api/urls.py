@@ -20,11 +20,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from records import views
 
 urlpatterns = [
+    path('', include('records.urls')),
     path('admin/', admin.site.urls), # Django Admin
     path('api-auth/', include('rest_framework.urls')), # DRF Login
     path('auth/', include('rest_framework_social_oauth2.urls')), # Social OAuth2
 
-    path('', include('records.urls')),
+
 
     # path('login/', LoginView, name='login'),
     # path('logout/', LogoutView, name='logout'),
