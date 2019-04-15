@@ -37,7 +37,13 @@ SECRET_KEY = 'y5c8lq$)abtujl2r)qv2wgbj*w=%a-q0a1qcxgefe=v10=_una'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'http://localhost:3000',
+    'localhost',
+    'localhost:3000',
+    '0.0.0.0:3000',
+    '127.0.0.1:3000',
+]
 
 
 # Application definition
@@ -59,6 +65,9 @@ PREREQUISITE_APPS = [
     # Django REST Framework Social OAuth2
     'oauth2_provider',
     'rest_framework_social_oauth2',
+
+    # CORS
+    'corsheaders',
 ]
 
 PROJECT_APPS = [
@@ -76,8 +85,22 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    # Social
     'social_django.middleware.SocialAuthExceptionMiddleware',
+
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'https://localhost:3000/'
+    '0.0.0.0:3000',
+    'http://127.0.0.1:3000',
+    'localhost:3000',       # This one works for dev purposes
+)
 
 ROOT_URLCONF = 'chief_api.urls'
 
@@ -138,7 +161,8 @@ AUTHENTICATION_BACKENDS = (
 
 # LOGIN_URL = 'login'
 # LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = '/users/1'
+LOGIN_REDIRECT_URL = '/'
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
 # SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
 # SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
 # SOCIAL_AUTH_RAISE_EXCEPTIONS = False
