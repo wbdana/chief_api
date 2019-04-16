@@ -43,6 +43,9 @@ ALLOWED_HOSTS = [
     'localhost:3000',
     '0.0.0.0:3000',
     '127.0.0.1:3000',
+    'http://localhost:3000/',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3000/'
 ]
 
 
@@ -77,6 +80,9 @@ PROJECT_APPS = [
 INSTALLED_APPS = PREREQUISITE_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -87,9 +93,6 @@ MIDDLEWARE = [
 
     # Social
     'social_django.middleware.SocialAuthExceptionMiddleware',
-
-    # CORS
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 # CORS

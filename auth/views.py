@@ -29,7 +29,6 @@ class AuthViewSet(viewsets.GenericViewSet):
     This viewset implements the get_github_user_identity method for basic GitHub authentication.
     """
 
-
     @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer,])
     def get_github_user_identity(self, request, *args, **kwargs):
         print(request)
