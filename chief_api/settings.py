@@ -169,6 +169,10 @@ LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_GITHUB_KEY = get_secret_setting('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = get_secret_setting('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = [
+    'repo',
+    'gist',
+]
 
 WSGI_APPLICATION = 'chief_api.wsgi.application'
 
