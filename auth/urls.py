@@ -13,8 +13,8 @@ from auth import views
 #     'get': 'highlight',
 # }, renderer_classes=[renderers.StaticHTMLRenderer])
 
-get_github_user_identity = views.AuthViewSet.as_view({
-    'get': 'get_github_user_identity',
+get_github_access_code = views.AuthViewSet.as_view({
+    'get': 'get_github_access_code',
 })
 
 
@@ -23,6 +23,6 @@ urlpatterns = [
     # path('schema/', schema_view),
 
 
-    # path('login/', views.get_github_user_identity, name='get_github_user_identity'),
-    path('login/', get_github_user_identity, name='get_github_user_identity')
+    # path('login/', views.get_github_access_code, name='get_github_access_code'),
+    path('login/', get_github_access_code, name='get_github_access_code')
 ]

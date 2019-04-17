@@ -26,11 +26,11 @@ def get_secret_setting(setting, secrets=secrets):
 
 class AuthViewSet(viewsets.GenericViewSet):
     """
-    This viewset implements the get_github_user_identity method for basic GitHub authentication.
+    This viewset implements the get_github_access_code method for basic GitHub authentication.
     """
 
     @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer,])
-    def get_github_user_identity(self, request, *args, **kwargs):
+    def get_github_access_code(self, request, *args, **kwargs):
         print(request)
         params = {
             'client_id': get_secret_setting('SOCIAL_AUTH_GITHUB_KEY'),
