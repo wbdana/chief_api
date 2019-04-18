@@ -13,10 +13,13 @@ from auth import views
 #     'get': 'highlight',
 # }, renderer_classes=[renderers.StaticHTMLRenderer])
 
-get_github_access_code = views.AuthViewSet.as_view({
-    'get': 'get_github_access_code',
-})
+# get_github_access_code = views.AuthViewSet.as_view({
+#     'get': 'get_github_access_code',
+# })
 
+convert_token = views.AuthViewSet.as_view({
+    'post': 'convert_token',
+})
 
 urlpatterns = [
     # path('', include(router.urls)),
@@ -24,5 +27,7 @@ urlpatterns = [
 
 
     # path('login/', views.get_github_access_code, name='get_github_access_code'),
-    path('login/', get_github_access_code, name='get_github_access_code')
+
+    # path('login/', get_github_access_code, name='get_github_access_code')
+    path('convert_token/', convert_token, name='convert-token'),
 ]

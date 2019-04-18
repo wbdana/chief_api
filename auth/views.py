@@ -44,5 +44,14 @@ class AuthViewSet(viewsets.GenericViewSet):
         # print(r.json())
         return Response(r.text)
 
+    @action(detail=True, methods=['POST'])
+    def convert_token(self, request, *args, **kwargs):
+        """
+        This method takes the `access_code` passed to it from the front end, and makes a POST request to https://github.com/login/oauth/access_token, which then returns an authorization_token for further requests.
+        """
+        print(request.data)
+        return Response({ 'status_code': 200 })
+
+
 
 
