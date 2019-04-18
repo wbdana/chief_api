@@ -10,6 +10,7 @@ from django.core.exceptions import ImproperlyConfigured
 from rest_framework import generics, renderers, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.settings import api_settings
 
 
 with open(os.path.abspath("./secrets.json")) as f:
@@ -49,7 +50,19 @@ class AuthViewSet(viewsets.GenericViewSet):
         """
         This method takes the `access_code` passed to it from the front end, and makes a POST request to https://github.com/login/oauth/access_token, which then returns an authorization_token for further requests.
         """
-        print(request.data)
+        # print(request.data.code)
+        r = requests.post("https://github.com/login/oauth/access_token", data = {
+            'code': request.data['code'],
+            # 'client_id': api_settings.SOCIAL_AUTH_GITHUB_KEY,
+            # 'client_secret': api_settings.SOCIAL_AUTH_GITHUB_SECRET,
+            'client_id': get_secret_setting('SOCIAL_AUTH_GITHUB_KEY'),
+            'client_secret': get_secret_setting('SOCIAL_AUTH_GITHUB_SECRET'),
+            'redirect_uri': "http://localhost:3000/callback",
+            'state': "This State is a Test State",
+        })
+        print("STATUS CODE " + str(r.status_code))
+        print(r.text)
+
         return Response({ 'status_code': 200 })
 
 
