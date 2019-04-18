@@ -30,7 +30,7 @@ class AuthViewSet(viewsets.GenericViewSet):
     This viewset implements the get_github_access_code method for basic GitHub authentication.
     """
 
-    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer,])
+    @action(detail=True, renderer_classes=[renderers.JSONRenderer, renderers.StaticHTMLRenderer,])
     def get_github_access_code(self, request, *args, **kwargs):
         print(request)
         params = {
@@ -45,7 +45,7 @@ class AuthViewSet(viewsets.GenericViewSet):
         # print(r.json())
         return Response(r.text)
 
-    @action(detail=True, methods=['POST'])
+    @action(detail=True, methods=['POST'], renderer_classes=[renderers.JSONRenderer,])
     def convert_token(self, request, *args, **kwargs):
         """
         This method takes the `access_code` passed to it from the front end, and makes a POST request to https://github.com/login/oauth/access_token, which then returns an authorization_token for further requests.
@@ -53,8 +53,6 @@ class AuthViewSet(viewsets.GenericViewSet):
         # print(request.data.code)
         r = requests.post("https://github.com/login/oauth/access_token", data = {
             'code': request.data['code'],
-            # 'client_id': api_settings.SOCIAL_AUTH_GITHUB_KEY,
-            # 'client_secret': api_settings.SOCIAL_AUTH_GITHUB_SECRET,
             'client_id': get_secret_setting('SOCIAL_AUTH_GITHUB_KEY'),
             'client_secret': get_secret_setting('SOCIAL_AUTH_GITHUB_SECRET'),
             'redirect_uri': "http://localhost:3000/callback",
@@ -63,7 +61,11 @@ class AuthViewSet(viewsets.GenericViewSet):
         print("STATUS CODE " + str(r.status_code))
         print(r.text)
 
-        return Response({ 'status_code': 200 })
+
+        return Response({
+            'data': r.text,
+            'status_code': 200
+        })
 
 
 
