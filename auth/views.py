@@ -17,6 +17,7 @@ with open(os.path.abspath("./secrets.json")) as f:
     secrets = json.loads(f.read())
 
 
+# TODO This should be some sort of service
 def get_secret_setting(setting, secrets=secrets):
     try:
         return secrets[setting]
@@ -25,27 +26,27 @@ def get_secret_setting(setting, secrets=secrets):
 
 
 
-class AuthViewSet(viewsets.GenericViewSet):
+class AuthViewSet(viewsets.ViewSet):
     """
     This viewset implements the get_github_access_code method for basic GitHub authentication.
     """
 
-    @action(detail=True, renderer_classes=[renderers.JSONRenderer, renderers.StaticHTMLRenderer,])
-    def get_github_access_code(self, request, *args, **kwargs):
-        print(request)
-        params = {
-            'client_id': get_secret_setting('SOCIAL_AUTH_GITHUB_KEY'),
-            'scope': 'repo gist',
-            'redirect_uri': settings.LOGIN_REDIRECT_URL
-        }
-        r = requests.get('https://github.com/login/oauth/authorize', params=params)
-        print(r.status_code)
-        print(r)
-        # print(r.text)
-        # print(r.json())
-        return Response(r.text)
+    # @action(detail=True, renderer_classes=[renderers.JSONRenderer, renderers.StaticHTMLRenderer,])
+    # def get_github_access_code(self, request, *args, **kwargs):
+    #     print(request)
+    #     params = {
+    #         'client_id': get_secret_setting('SOCIAL_AUTH_GITHUB_KEY'),
+    #         'scope': 'repo gist',
+    #         'redirect_uri': settings.LOGIN_REDIRECT_URL
+    #     }
+    #     r = requests.get('https://github.com/login/oauth/authorize', params=params)
+    #     print(r.status_code)
+    #     print(r)
+    #     # print(r.text)
+    #     # print(r.json())
+    #     return Response(r.text)
 
-    @action(detail=True, methods=['POST'], renderer_classes=[renderers.JSONRenderer,])
+    @action(detail=False, methods=['POST'], renderer_classes=[renderers.JSONRenderer,])
     def convert_token(self, request, *args, **kwargs):
         """
         This method takes the `access_code` passed to it from the front end, and makes a POST request to https://github.com/login/oauth/access_token, which then returns an authorization_token for further requests.
@@ -61,10 +62,28 @@ class AuthViewSet(viewsets.GenericViewSet):
         print("STATUS CODE " + str(r.status_code))
         print(r.text)
 
-
+        # TODO This method should really process the data itself for the front end
         return Response({
             'data': r.text,
-            'status_code': 200
+            'status_code': 200,
+        })
+
+    @action(detail=False, methods=['GET'], renderer_classes=[renderers.JSONRenderer,])
+    def get_github_self(self, request, *args, **kwargs):
+        """
+        This method returns the user profile associated with the current `authorization_token` from GitHub, i.e. the user currently logged in.
+        """
+        print("hit get_github_self")
+        print(request.headers['Authorization'])
+        headers = {
+            'Authorization': str(request.headers['Authorization']),
+        }
+        r = requests.get("https://api.github.com/user", headers=headers)
+        print(r)
+        print(r.text)
+        return Response({
+            'success': "OH YEAH",
+            'status_code': 200,
         })
 
 

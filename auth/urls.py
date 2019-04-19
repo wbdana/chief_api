@@ -21,6 +21,10 @@ convert_token = views.AuthViewSet.as_view({
     'post': 'convert_token',
 })
 
+get_github_self = views.AuthViewSet.as_view({
+    'get': 'get_github_self',
+})
+
 urlpatterns = [
     # path('', include(router.urls)),
     # path('schema/', schema_view),
@@ -29,5 +33,6 @@ urlpatterns = [
     # path('login/', views.get_github_access_code, name='get_github_access_code'),
 
     # path('login/', get_github_access_code, name='get_github_access_code')
-    path('convert_token/', convert_token, name='convert-token'),
+    path('convert_token/', convert_token, name='convert_token'),
+    path('get_github_self/', get_github_self, name='get_github_self')
 ]
