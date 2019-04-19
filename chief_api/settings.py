@@ -43,6 +43,9 @@ ALLOWED_HOSTS = [
     'localhost:3000',
     '0.0.0.0:3000',
     '127.0.0.1:3000',
+    'http://localhost:3000/',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3000/'
 ]
 
 
@@ -143,6 +146,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework_social_oauth2.authentication.SocialAuthentication',
+    ),
+
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ),
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
