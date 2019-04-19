@@ -82,6 +82,7 @@ class AuthViewSet(viewsets.ViewSet):
         print(r)
         print(r.text)
         return Response({
+            'data': json.loads(r.text),
             'success': "OH YEAH",
             'status_code': 200,
         })
