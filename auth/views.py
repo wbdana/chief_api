@@ -63,8 +63,15 @@ class AuthViewSet(viewsets.ViewSet):
         print(r.text)
 
         # TODO This method should really process the data itself for the front end
+        key_value_pairs = r.text.split("&")
+        data = {}
+        for key_value_string in key_value_pairs:
+            split = key_value_string.split("=")
+            data[split[0]] = split[1]
+        print("did it work?")
+        
         return Response({
-            'data': r.text,
+            'data': data,
             'status_code': 200,
         })
 
