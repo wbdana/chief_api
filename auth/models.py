@@ -23,7 +23,7 @@ class Collaborator(models.Model):
 
 class Reader(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    user = models.OneToOneField(User, on_delete=CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('created',)
@@ -33,6 +33,7 @@ class GithubUser(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     access_token = models.CharField()
     refresh_token = models.CharField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('created',)

@@ -9,6 +9,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     collaborator = serializers.HyperlinkedRelatedField(many=False, view_name='collaborator-detail', read_only=True)
     reader = serializers.HyperlinkedRelatedField(many=False, view_name='reader-detail', read_only=True)
     github_user = serializers.HyperlinkedRelatedField(many=False, view_name='githubuser-detail', read_only=True)
+    records = serializers.HyperlinkedRelatedField(many=True, view_name='record-detail', read_only=True)
 
     class Meta:
         model = User
@@ -20,6 +21,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'collaborator',
             'reader',
             'github_user',
+            'records',
         )
 
 
