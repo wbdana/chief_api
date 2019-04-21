@@ -28,23 +28,8 @@ def get_secret_setting(setting, secrets=secrets):
 
 class AuthViewSet(viewsets.ViewSet):
     """
-    This viewset implements the get_github_access_code method for basic GitHub authentication.
+    This viewset implements the convert_token method for getting an access token, as well as the get_github_self method for returning the current user's basic Github data.
     """
-
-    # @action(detail=True, renderer_classes=[renderers.JSONRenderer, renderers.StaticHTMLRenderer,])
-    # def get_github_access_code(self, request, *args, **kwargs):
-    #     print(request)
-    #     params = {
-    #         'client_id': get_secret_setting('SOCIAL_AUTH_GITHUB_KEY'),
-    #         'scope': 'repo gist',
-    #         'redirect_uri': settings.LOGIN_REDIRECT_URL
-    #     }
-    #     r = requests.get('https://github.com/login/oauth/authorize', params=params)
-    #     print(r.status_code)
-    #     print(r)
-    #     # print(r.text)
-    #     # print(r.json())
-    #     return Response(r.text)
 
     @action(detail=False, methods=['POST'], renderer_classes=[renderers.JSONRenderer,])
     def convert_token(self, request, *args, **kwargs):
@@ -59,17 +44,12 @@ class AuthViewSet(viewsets.ViewSet):
             'redirect_uri': "http://localhost:3000/callback",
             'state': "This State is a Test State",
         })
-        print("STATUS CODE " + str(r.status_code))
-        print(r.text)
-
-        # TODO This method should really process the data itself for the front end
         key_value_pairs = r.text.split("&")
         data = {}
         for key_value_string in key_value_pairs:
             split = key_value_string.split("=")
             data[split[0]] = split[1]
-        print("did it work?")
-        
+        # TODO Use proper HTTP status codes
         return Response({
             'data': data,
             'status_code': 200,
@@ -90,10 +70,6 @@ class AuthViewSet(viewsets.ViewSet):
         print(r.text)
         return Response({
             'data': json.loads(r.text),
-            'success': "OH YEAH",
             'status_code': 200,
         })
-
-
-
 
