@@ -63,3 +63,14 @@ class ReaderSerializer(serializers.HyperlinkedModelSerializer):
             'records',
         )
 
+
+class GithubUserSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.HyperlinkedRelatedField(view_name='user-detail', read_only=True)
+    
+    class Meta:
+        model = GithubUser
+        fields = (
+            'url',
+            'id',
+            'created',
+        )
