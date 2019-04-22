@@ -62,13 +62,6 @@ PREREQUISITE_APPS = [
     # Django REST Framework
     'rest_framework',
 
-    # Social Django
-    # 'social_django',
-
-    # Django REST Framework Social OAuth2
-    # 'oauth2_provider',
-    # 'rest_framework_social_oauth2',
-
     # CORS
     'corsheaders',
 ]
@@ -91,9 +84,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # Social
-    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 # CORS
@@ -120,12 +110,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                # 'social_django.context_processors.backends',
-                # 'social_django.context_processors.login_redirect',
-
-                # 'social_django.context_processors.backends',
-                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -145,8 +129,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        # 'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
 
     'DEFAULT_RENDERER_CLASSES': (
@@ -158,14 +140,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-# Social Auth
 AUTHENTICATION_BACKENDS = (
-    # 'social_core.backends.github.GithubOAuth2',
-    # 'social_core.backends.twitter.TwitterOAuth',
-    # 'social_core.backends.facebook.FacebookOAuth2',
-
-    'social_core.backends.github.GithubOAuth2',
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
