@@ -63,11 +63,11 @@ PREREQUISITE_APPS = [
     'rest_framework',
 
     # Social Django
-    'social_django',
+    # 'social_django',
 
     # Django REST Framework Social OAuth2
-    'oauth2_provider',
-    'rest_framework_social_oauth2',
+    # 'oauth2_provider',
+    # 'rest_framework_social_oauth2',
 
     # CORS
     'corsheaders',
@@ -145,8 +145,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        # 'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
 
     'DEFAULT_RENDERER_CLASSES': (
