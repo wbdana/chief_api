@@ -93,7 +93,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     # Social
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 # CORS
@@ -124,8 +124,8 @@ TEMPLATES = [
                 # 'social_django.context_processors.backends',
                 # 'social_django.context_processors.login_redirect',
 
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
