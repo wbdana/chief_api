@@ -63,11 +63,11 @@ PREREQUISITE_APPS = [
     'rest_framework',
 
     # Social Django
-    'social_django',
+    # 'social_django',
 
     # Django REST Framework Social OAuth2
-    'oauth2_provider',
-    'rest_framework_social_oauth2',
+    # 'oauth2_provider',
+    # 'rest_framework_social_oauth2',
 
     # CORS
     'corsheaders',
@@ -75,6 +75,7 @@ PREREQUISITE_APPS = [
 
 PROJECT_APPS = [
     'records.apps.RecordsConfig',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 INSTALLED_APPS = PREREQUISITE_APPS + PROJECT_APPS
@@ -92,7 +93,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     # Social
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 # CORS
@@ -123,8 +124,8 @@ TEMPLATES = [
                 # 'social_django.context_processors.backends',
                 # 'social_django.context_processors.login_redirect',
 
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -144,8 +145,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        # 'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
 
     'DEFAULT_RENDERER_CLASSES': (

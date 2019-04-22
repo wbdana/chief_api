@@ -1,4 +1,5 @@
-"""chief_api URL Configuration
+"""
+chief_api URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -25,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls), # Django Admin
     path('api-auth/', include('rest_framework.urls')), # DRF Login
 
-    path('auth/', include('auth.urls')),
+    path('auth/', include('authentication.urls')),
 
 
 

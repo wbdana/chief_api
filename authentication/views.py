@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from django.conf import settings
-import requests
 
+
+from django.contrib.auth.models import User
+from authentication.models import Owner, Collaborator, Reader, GithubUser
+from authentication.serializers import UserSerializer, OwnerSerializer, CollaboratorSerializer, ReaderSerializer, GithubUserSerializer
+
+
+import requests
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
@@ -73,3 +79,27 @@ class AuthViewSet(viewsets.ViewSet):
             'status_code': 200,
         })
 
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Provides actions:
+        list
+        details
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class OwnerViewSet(viewsets.ModelViewSet):
+    queryset = Owner.objects.all()
+    serializer_class = OwnerSerializer
+
+
+class CollaboratorViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Collaborator.objects.all()
+    serializer_class = CollaboratorSerializer
+
+
+class ReaderViewSet(viewsets.ModelViewSet):
+    queryset = Reader.objects.all()
+    serializer_class = ReaderSerializer
