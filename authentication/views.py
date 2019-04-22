@@ -3,8 +3,8 @@ from django.conf import settings
 
 
 from django.contrib.auth.models import User
-from auth.models import Owner, Collaborator, Reader, GithubUser
-from auth.serializers import UserSerializer, OwnerSerializer, CollaboratorSerializer, ReaderSerializer, GithubUserSerializer
+from authentication.models import Owner, Collaborator, Reader, GithubUser
+from authentication.serializers import UserSerializer, OwnerSerializer, CollaboratorSerializer, ReaderSerializer, GithubUserSerializer
 
 
 import requests

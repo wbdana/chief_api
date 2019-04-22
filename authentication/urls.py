@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.schemas import get_schema_view
-from auth import views
+from authentication import views
 
 # router = DefaultRouter()
 # router.register(r'auth', views.AuthViewSet)

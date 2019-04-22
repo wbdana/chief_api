@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls), # Django Admin
     path('api-auth/', include('rest_framework.urls')), # DRF Login
 
-    path('auth/', include('auth.urls')),
+    path('auth/', include('authentication.urls')),
 
 
 

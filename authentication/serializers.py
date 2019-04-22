@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from auth.models import Owner, Collaborator, Reader, GithubUser
+from authentication.models import Owner, Collaborator, Reader, GithubUser
 from django.contrib.auth.models import User
 from records.serializers import RecordSerializer
 

@@ -75,7 +75,7 @@ PREREQUISITE_APPS = [
 
 PROJECT_APPS = [
     'records.apps.RecordsConfig',
-    'auth.apps.AuthConfig',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 INSTALLED_APPS = PREREQUISITE_APPS + PROJECT_APPS
