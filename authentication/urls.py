@@ -1,17 +1,17 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import DefaultRouter, SimpleRouter
 from rest_framework.schemas import get_schema_view
 from authentication import views
 
 # router = DefaultRouter()
 # router.register(r'auth', views.AuthViewSet)
 
-router = DefaultRouter()
+router = SimpleRouter()
 router.register(r'owners', views.OwnerViewSet)
 router.register(r'collaborators', views.CollaboratorViewSet)
 router.register(r'readers', views.ReaderViewSet)
 router.register(r'users', views.UserViewSet)
-router.register(r'auth', views.AuthViewSet, base_name='auth')
+router.register(r'', views.AuthViewSet, base_name='auth')
 
 
 schema_view = get_schema_view(title='GitHub Auth API')
