@@ -6,7 +6,15 @@ from authentication import views
 # router = DefaultRouter()
 # router.register(r'auth', views.AuthViewSet)
 
-# schema_view = get_schema_view(title='GitHub Auth API')
+router = DefaultRouter()
+router.register(r'owners', views.OwnerViewSet)
+router.register(r'collaborators', views.CollaboratorViewSet)
+router.register(r'readers', views.ReaderViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'auth', views.AuthViewSet, base_name='auth')
+
+
+schema_view = get_schema_view(title='GitHub Auth API')
 
 
 # snippet_highlight = SnippetViewSet.as_view({
@@ -26,13 +34,12 @@ get_github_self = views.AuthViewSet.as_view({
 })
 
 urlpatterns = [
-    # path('', include(router.urls)),
-    # path('schema/', schema_view),
+    path('', include(router.urls)),
+    path('schema/', schema_view),
 
 
-    # path('login/', views.get_github_access_code, name='get_github_access_code'),
 
-    # path('login/', get_github_access_code, name='get_github_access_code')
-    path('convert_token/', convert_token, name='convert_token'),
-    path('get_github_self/', get_github_self, name='get_github_self')
+
+    # path('convert_token/', convert_token, name='convert_token'),
+    # path('get_github_self/', get_github_self, name='get_github_self')
 ]
