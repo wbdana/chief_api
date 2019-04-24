@@ -11,26 +11,6 @@ from records.serializers import RecordSerializer, UserSerializer
 from records.permissions import IsOwnerOrReadOnly
 
 
-@api_view(['GET'])
-def auth_api_root(request, format=None):
-    return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'owners': reverse('owner-list', request=request, format=format),
-        'collaborators': reverse('collaborator-list', request=request, format=format),
-        'readers': reverse('reader-list', request=request, format=format),
-    })
-
-
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Provides actions:
-        list
-        details
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
 class RecordViewSet(viewsets.ModelViewSet):
     """
     Provides actions:

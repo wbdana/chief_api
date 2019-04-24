@@ -18,13 +18,27 @@ from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth.views import LoginView, LogoutView
 from rest_framework.schemas import get_schema_view
+from rest_framework.routers import DefaultRouter
 from records import views
+
+
+from authentication.urls import authentication_router
+from records.urls import records_router
 
 schema_view = get_schema_view(title='Chief API')
 
+router = DefaultRouter()
+router.registry.extend(authentication_router.registry)
+router.registry.extend(records_router.registry)
+
 urlpatterns = [
-    path('', include('records.urls')),
-    path('auth/', include('authentication.urls')),
+    # path('', include('records.urls')),
+
+    path('', include(router.urls)),
+    # path('auth/', include(authentication_router.urls)),
+
+    # path('records/', include('records.urls')),
+    # path('auth/', include('authentication.urls')),
 
     path('admin/', admin.site.urls), # Django Admin
     path('api-auth/', include('rest_framework.urls')), # DRF Login
