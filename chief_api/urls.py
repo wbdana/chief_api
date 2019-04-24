@@ -16,31 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-# from django.contrib.auth.views import login, logout
 from django.contrib.auth.views import LoginView, LogoutView
+from rest_framework.schemas import get_schema_view
 from records import views
+
+schema_view = get_schema_view(title='Chief API')
 
 urlpatterns = [
     path('', include('records.urls')),
+    path('auth/', include('authentication.urls')),
 
     path('admin/', admin.site.urls), # Django Admin
     path('api-auth/', include('rest_framework.urls')), # DRF Login
 
-    path('auth/', include('authentication.urls')),
-
-
-
-    # path('auth/', include('rest_framework_social_oauth2.urls')), # Social OAuth2
-
-
-
-    # path('login/', LoginView, name='login'),
-    # path('logout/', LogoutView, name='logout'),
-
-    # path('oauth/', include('social_django.urls', namespace='social')),
-
-    # path('settings/', views.settings, name='settings'),
-    # path('settings/password/', views.password, name='password'),
-
-    # path('api-auth/', include('rest_framework.urls')),
+    path('schema/', schema_view),
 ]
