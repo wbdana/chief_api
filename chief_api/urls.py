@@ -32,13 +32,8 @@ router.registry.extend(authentication_router.registry)
 router.registry.extend(records_router.registry)
 
 urlpatterns = [
-    # path('', include('records.urls')),
 
     path('', include(router.urls)),
-    # path('auth/', include(authentication_router.urls)),
-
-    # path('records/', include('records.urls')),
-    # path('auth/', include('authentication.urls')),
 
     path('admin/', admin.site.urls), # Django Admin
     path('api-auth/', include('rest_framework.urls')), # DRF Login
