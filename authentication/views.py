@@ -31,7 +31,6 @@ def get_secret_setting(setting, secrets=secrets):
         raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 
-
 class AuthViewSet(viewsets.ViewSet):
     """
     This viewset implements the convert_token method for getting an access token, as well as the get_github_self method for returning the current user's basic Github data.
