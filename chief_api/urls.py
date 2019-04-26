@@ -32,7 +32,6 @@ router.registry.extend(authentication_router.registry)
 router.registry.extend(records_router.registry)
 
 urlpatterns = [
-
     path('', include(router.urls)),
 
     path('admin/', admin.site.urls), # Django Admin
