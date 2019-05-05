@@ -77,6 +77,13 @@ class AuthViewSet(viewsets.ViewSet):
             'data': json.loads(r.text),
             'status_code': 200,
         })
+    
+    @action(detail=False, methods=['GET'], renderer_classes=[renderers.JSONRenderer,])
+    def get_user_repos(self, request, *args, **kwargs):
+        """
+        This method returns the user's repositories from GitHub.
+        """
+        
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
